@@ -51,10 +51,10 @@
 }
 
 .product__card__detail {
-  padding: 12px;
-  padding-bottom: 50px;
+  padding: 10px;
+  padding-bottom: 45px;
   position: relative;
-  min-height: 140px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
