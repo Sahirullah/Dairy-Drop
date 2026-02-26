@@ -1,0 +1,128 @@
+.category__container {
+    height: auto;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.category {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.category__header__container {
+    height: 200px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.category__header__big {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.category__header {
+    align-self: flex-start;
+}
+
+.category__header__line {
+    display: none;
+}
+
+.category__sort {
+    height: auto;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: flex-end;
+}
+
+.category__carousel__section {
+    width: 100%;
+    margin: 40px 0;
+    padding: 0 5%;
+}
+
+.carousel__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.category__card__container {
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: block;
+}
+
+.category__card__container::-webkit-scrollbar {
+    display: none !important;
+}
+
+.category__product__card {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: max-content;
+    padding: 0 5%;
+}
+
+.show__more__action {
+    width: 280px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.show__more__button {
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: #FFE26E;
+    border-color: #FFE26E;
+    border-style: dashed;
+    font-weight: bold;
+}
+
+.category__all__products {
+    width: 90%;
+    margin: 60px auto;
+}
+
+.category__all__products h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+}
+
+.category__grid__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    align-items: stretch;
+}

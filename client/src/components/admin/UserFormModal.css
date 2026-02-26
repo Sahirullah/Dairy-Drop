@@ -1,0 +1,114 @@
+.user-modal {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.user-form {
+    padding: 20px;
+}
+
+.user-form .form-group {
+    margin-bottom: 20px;
+}
+
+.user-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.user-form input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.checkbox-group {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group span {
+    font-weight: 500;
+    color: #333;
+}
+
+.checkbox-group small {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-left: 28px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.btn-cancel,
+.btn-submit {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel {
+    background: #f8f9fa;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #e9ecef;
+}
+
+.btn-submit {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-submit:hover {
+    background: #45a049;
+}
+
+.btn-submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}

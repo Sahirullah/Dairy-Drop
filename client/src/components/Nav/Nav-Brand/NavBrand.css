@@ -1,0 +1,31 @@
+
+
+.navbrand__container {
+    height: 100%;
+    width: 20%;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbrand__logo-link {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbrand__logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+
+@media screen and (max-width: 600px) {
+    .navbrand__container  {
+        align-self: center;
+    }
+}

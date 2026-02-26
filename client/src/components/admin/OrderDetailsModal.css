@@ -1,0 +1,151 @@
+.order-details-modal {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.order-details-content {
+    padding: 20px;
+}
+
+.details-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.details-section:last-child {
+    border-bottom: none;
+}
+
+.details-section h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item .label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.info-item .value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.info-item .value.paid {
+    color: #2e7d32;
+}
+
+.info-item .value.unpaid {
+    color: #c62828;
+}
+
+.address-box {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.address-box p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.order-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-item-row {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.order-item-row img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.item-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.item-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.summary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #666;
+}
+
+.summary-row.total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+}
+
+.status-update-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

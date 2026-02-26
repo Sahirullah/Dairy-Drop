@@ -1,0 +1,499 @@
+.about__container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Hero Section */
+.about__hero {
+    width: 100%;
+    background: linear-gradient(135deg, #FFE26E 0%, #FFD700 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: #333;
+}
+
+.about__hero__content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #333;
+}
+
+.about__hero__content p {
+    font-size: 1.3rem;
+    margin: 0;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Mission Section */
+.about__mission {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+.about__mission__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.mission__text h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.mission__text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+    margin: 0 0 15px 0;
+}
+
+.mission__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mission__image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 360px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mission__placeholder {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #FFE26E 0%, #FFD700 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Values Section */
+.about__values {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+}
+
+.about__values h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin: 0 0 50px 0;
+}
+
+.values__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.value__card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value__card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.value__icon {
+    font-size: 3rem;
+    color: #FFE26E;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.value__icon svg {
+    font-size: 3rem;
+}
+
+.value__card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 15px 0;
+}
+
+.value__card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+/* Story Section */
+.about__story {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+.story__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story__content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+.story__text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+    margin: 0 0 20px 0;
+    text-align: justify;
+}
+
+.story__text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Stats Section */
+.about__stats {
+    width: 100%;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #FFE26E 0%, #FFD700 100%);
+}
+
+.stats__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.stat__item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.stat__item p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0 0 0;
+}
+
+/* Team/Why Choose Us Section */
+.about__team {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+}
+
+.about__team h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin: 0 0 50px 0;
+}
+
+.team__reasons {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.reason__item {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.reason__item:hover {
+    transform: translateY(-5px);
+}
+
+.reason__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #FFE26E;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.reason__item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 15px 0;
+}
+
+.reason__item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+/* FAQ Section */
+.about__faq {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: #fff;
+}
+
+.about__faq h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 40px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about__faq h2::after {
+    content: '⋮';
+    font-size: 1.5rem;
+    color: #999;
+}
+
+.about__faq__subtitle {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin: 0 0 50px 0;
+    display: none;
+}
+
+.about__faq__grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about__faq__card {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    transition: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+}
+
+.about__faq__card:first-child {
+    padding-top: 0;
+}
+
+.about__faq__card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.about__faq__question {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.about__faq__question:hover {
+    color: #666;
+}
+
+.about__faq__icon {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+    color: #ccc;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.about__faq__question.active .about__faq__icon {
+    transform: rotate(180deg);
+    color: #999;
+}
+
+.about__faq__answer {
+    padding: 15px 0 0 0;
+    background: transparent;
+    border-top: none;
+    animation: slideDown 0.3s ease;
+}
+
+.about__faq__answer p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about__hero__content h1 {
+        font-size: 2rem;
+    }
+
+    .about__hero__content p {
+        font-size: 1rem;
+    }
+
+    .about__mission__content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .mission__placeholder {
+        width: 250px;
+        height: 250px;
+        font-size: 80px;
+    }
+
+    .about__values h2,
+    .story__content h2,
+    .about__team h2,
+    .about__faq h2 {
+        font-size: 1.8rem;
+    }
+
+    .values__grid,
+    .team__reasons,
+    .about__faq__grid {
+        gap: 20px;
+    }
+
+    .stat__item h3 {
+        font-size: 2rem;
+    }
+
+    .story__text p {
+        text-align: left;
+    }
+
+    .about__faq__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .about__hero {
+        padding: 50px 15px;
+    }
+
+    .about__hero__content h1 {
+        font-size: 1.5rem;
+    }
+
+    .about__hero__content p {
+        font-size: 0.9rem;
+    }
+
+    .about__mission,
+    .about__values,
+    .about__story,
+    .about__stats,
+    .about__team,
+    .about__faq {
+        padding: 40px 15px;
+    }
+
+    .mission__text h2,
+    .about__values h2,
+    .story__content h2,
+    .about__team h2,
+    .about__faq h2 {
+        font-size: 1.5rem;
+    }
+
+    .mission__placeholder {
+        width: 200px;
+        height: 200px;
+        font-size: 60px;
+    }
+
+    .stat__item h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat__item p {
+        font-size: 0.85rem;
+    }
+
+    .value__card,
+    .reason__item {
+        padding: 20px;
+    }
+
+    .value__icon svg {
+        font-size: 2.5rem;
+    }
+
+    .about__faq__question {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .about__faq__answer {
+        padding: 0 20px 20px 20px;
+    }
+}
