@@ -103,6 +103,7 @@
     border: 1px solid #eee;
     border-radius: 8px;
     margin-bottom: 15px;
+    align-items: flex-start;
 }
 
 .order-item img {
@@ -128,10 +129,65 @@
     color: #666;
 }
 
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.qty-btn:hover {
+    background: #FFE26E;
+    border-color: #FFE26E;
+}
+
+.qty-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+}
+
 .item-price {
     font-size: 18px;
     font-weight: bold;
     color: #333;
+}
+
+.remove-btn {
+    display: block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef5350;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.remove-btn:hover {
+    background: #ef5350;
+    color: white;
 }
 
 .order-totals {
@@ -168,4 +224,148 @@
     .checkout-form .form-row {
         grid-template-columns: 1fr;
     }
+}
+
+/* Success Modal Styles */
+.success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.success-modal-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    overflow: hidden;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success-modal-header {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #4caf50;
+    margin: 0 auto;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.success-modal-content {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.success-modal-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    color: #333;
+    font-weight: 600;
+}
+
+.success-message {
+    margin: 0 0 25px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.order-details-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.confirmation-text {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.success-modal-btn {
+    width: 100%;
+    padding: 14px 20px;
+    background: #FFE26E;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.success-modal-btn:hover {
+    background: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 226, 110, 0.3);
 }

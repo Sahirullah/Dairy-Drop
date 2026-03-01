@@ -53,21 +53,42 @@ const OrderDetailsModal = ({ order, onClose, onStatusChange }) => {
                         <div className="info-grid">
                             <div className="info-item">
                                 <span className="label">Name:</span>
-                                <span className="value">{order.user?.name || 'N/A'}</span>
+                                <span className="value">{order.customerInfo?.name || order.user?.name || 'N/A'}</span>
                             </div>
                             <div className="info-item">
                                 <span className="label">Email:</span>
-                                <span className="value">{order.user?.email || 'N/A'}</span>
+                                <span className="value">{order.customerInfo?.email || order.user?.email || 'N/A'}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="label">Phone Number:</span>
+                                <span className="value">{order.customerInfo?.phone || order.user?.phone || 'N/A'}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="details-section">
                         <h3>Shipping Address</h3>
-                        <div className="address-box">
-                            <p>{order.shippingAddress.street}</p>
-                            <p>{order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}</p>
-                            <p>{order.shippingAddress.country}</p>
+                        <div className="info-grid">
+                            <div className="info-item">
+                                <span className="label">Street Address:</span>
+                                <span className="value">{order.shippingAddress?.street || 'N/A'}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="label">City:</span>
+                                <span className="value">{order.shippingAddress?.city || 'N/A'}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="label">State/Province:</span>
+                                <span className="value">{order.shippingAddress?.state || 'N/A'}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="label">ZIP/Postal Code:</span>
+                                <span className="value">{order.shippingAddress?.zipCode || 'N/A'}</span>
+                            </div>
+                            <div className="info-item">
+                                <span className="label">Country:</span>
+                                <span className="value">{order.shippingAddress?.country || 'N/A'}</span>
+                            </div>
                         </div>
                     </div>
 
@@ -79,8 +100,12 @@ const OrderDetailsModal = ({ order, onClose, onStatusChange }) => {
                                     <img src={item.image} alt={item.name} />
                                     <div className="item-info">
                                         <h4>{item.name}</h4>
-                                        <p>Size: {item.size} | Color: {item.color}</p>
-                                        <p>Quantity: {item.quantity}</p>
+                                        <div className="item-details-grid">
+                                            <p><strong>Size:</strong> {item.size || 'N/A'}</p>
+                                            <p><strong>Color:</strong> {item.color || 'N/A'}</p>
+                                            <p><strong>Quantity:</strong> {item.quantity}</p>
+                                            <p><strong>Unit Price:</strong> ${item.price.toFixed(2)}</p>
+                                        </div>
                                     </div>
                                     <div className="item-price">
                                         ${(item.price * item.quantity).toFixed(2)}

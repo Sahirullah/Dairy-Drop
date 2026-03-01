@@ -22,6 +22,11 @@ const orderSchema = mongoose.Schema(
                 color: { type: String },
             },
         ],
+        customerInfo: {
+            name: { type: String, required: true },
+            email: { type: String, required: true },
+            phone: { type: String, required: true },
+        },
         shippingAddress: {
             street: { type: String, required: true },
             city: { type: String, required: true },

@@ -14,13 +14,19 @@ const createOrder = async (req, res) => {
             taxPrice,
             shippingPrice,
             totalPrice,
+            name,
+            email,
+            phone,
         } = req.body;
 
         console.log('Creating order with data:', {
             userId: req.user?._id,
             orderItemsCount: orderItems?.length,
             shippingAddress,
-            totalPrice
+            totalPrice,
+            customerName: name,
+            customerEmail: email,
+            customerPhone: phone,
         });
 
         if (!orderItems || orderItems.length === 0) {
@@ -58,6 +64,11 @@ const createOrder = async (req, res) => {
 
         const order = await Order.create({
             user: req.user._id,
+            customerInfo: {
+                name: name || req.user.name || '',
+                email: email || req.user.email || '',
+                phone: phone || req.user.phone || '',
+            },
             orderItems: normalizedOrderItems,
             shippingAddress,
             paymentMethod,
@@ -66,6 +77,15 @@ const createOrder = async (req, res) => {
             shippingPrice,
             totalPrice,
         });
+
+        // Update user's phone if provided
+        if (phone) {
+            await User.findByIdAndUpdate(
+                req.user._id,
+                { phone: phone },
+                { new: true }
+            );
+        }
 
         // Add order to user's orders array
         await User.findByIdAndUpdate(
@@ -87,7 +107,7 @@ const createOrder = async (req, res) => {
 // @access  Private
 const getOrderById = async (req, res) => {
     try {
-        const order = await Order.findById(req.params.id).populate("user", "name email");
+        const order = await Order.findById(req.params.id).populate("user", "name email phone");
 
         if (order) {
             res.json(order);
@@ -117,7 +137,7 @@ const getMyOrders = async (req, res) => {
 const getOrders = async (req, res) => {
     try {
         const orders = await Order.find({})
-            .populate("user", "name email")
+            .populate("user", "name email phone")
             .sort({ createdAt: -1 });
         res.json(orders);
     } catch (error) {

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
 import { AlertContext } from '../Context/AlertContext';
+import SuccessModal from '../components/SuccessModal/SuccessModal';
 import axios from 'axios';
 import './Checkout.css';
 
@@ -14,7 +15,10 @@ const Checkout = () => {
     const { showAlert } = useContext(AlertContext);
     const [submitting, setSubmitting] = useState(false);
 
-    const orderItems = location.state?.orderItems || [];
+    const initialOrderItems = location.state?.orderItems || [];
+    const [orderItems, setOrderItems] = useState(initialOrderItems);
+
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const [formData, setFormData] = useState({
         name: user?.name || '',
@@ -28,6 +32,18 @@ const Checkout = () => {
     });
 
     useEffect(() => {
+        // Update form data when user changes
+        if (user) {
+            setFormData(prev => ({
+                ...prev,
+                name: user.name || prev.name,
+                email: user.email || prev.email,
+                phone: user.phone || prev.phone,
+            }));
+        }
+    }, [user]);
+
+    useEffect(() => {
         if (orderItems.length === 0) {
             navigate('/shop');
         }
@@ -37,13 +53,29 @@ const Checkout = () => {
             showAlert('Please login account', 'info');
             navigate('/account/login', { state: { from: '/checkout', orderItems } });
         }
-    }, [orderItems, navigate, user, loading]);
+    }, [orderItems, navigate, user, loading, showAlert]);
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
+    };
+
+    const handleQuantityChange = (index, newQuantity) => {
+        if (newQuantity < 1) return;
+        const updatedItems = [...orderItems];
+        updatedItems[index].quantity = newQuantity;
+        setOrderItems(updatedItems);
+    };
+
+    const handleRemoveItem = (index) => {
+        const updatedItems = orderItems.filter((_, i) => i !== index);
+        setOrderItems(updatedItems);
+        if (updatedItems.length === 0) {
+            showAlert('No items in cart. Redirecting to shop...', 'info');
+            navigate('/shop');
+        }
     };
 
     const calculateTotal = () => {
@@ -132,6 +164,9 @@ const Checkout = () => {
                 taxPrice: taxPrice,
                 shippingPrice: shippingPrice,
                 totalPrice: totalPrice,
+                name: formData.name.trim(),
+                email: formData.email.trim(),
+                phone: formData.phone.trim(),
             };
 
             console.log('Sending order data:', JSON.stringify(orderData, null, 2));
@@ -156,9 +191,7 @@ const Checkout = () => {
                 },
             });
 
-            alert('Order placed successfully!');
-            showAlert('Order placed successfully!', 'success');
-            navigate('/');
+            setShowSuccessModal(true);
         } catch (error) {
             console.error('Error placing order:', error);
             console.error('Error response:', error.response?.data);
@@ -172,6 +205,11 @@ const Checkout = () => {
         } finally {
             setSubmitting(false);
         }
+    };
+
+    const handleCloseSuccessModal = () => {
+        setShowSuccessModal(false);
+        navigate('/');
     };
 
     return (
@@ -301,10 +339,33 @@ const Checkout = () => {
                                         <h4>{item.name}</h4>
                                         <p>Size: {item.size}</p>
                                         <p>Color: {item.color}</p>
-                                        <p>Quantity: {item.quantity}</p>
+                                        <div className="quantity-control">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleQuantityChange(index, item.quantity - 1)}
+                                                className="qty-btn"
+                                            >
+                                                −
+                                            </button>
+                                            <span className="qty-display">{item.quantity}</span>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleQuantityChange(index, item.quantity + 1)}
+                                                className="qty-btn"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className="item-price">
-                                        ${(item.price * item.quantity).toFixed(2)}
+                                        <div>${(item.price * item.quantity).toFixed(2)}</div>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveItem(index)}
+                                            className="remove-btn"
+                                        >
+                                            Remove
+                                        </button>
                                     </div>
                                 </div>
                             ))}
@@ -331,6 +392,12 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
+
+            <SuccessModal
+                isOpen={showSuccessModal}
+                message="Your order has been placed successfully! You will receive a confirmation email shortly."
+                onClose={handleCloseSuccessModal}
+            />
         </div>
     );
 };

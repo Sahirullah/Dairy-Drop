@@ -9,6 +9,7 @@ const Orders = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [showDetails, setShowDetails] = useState(false);
     const [filterStatus, setFilterStatus] = useState('all');
+    const [expandedOrderId, setExpandedOrderId] = useState(null);
 
     useEffect(() => {
         fetchOrders();
@@ -125,6 +126,7 @@ const Orders = () => {
                     <table className="orders-table">
                         <thead>
                             <tr>
+                                <th style={{ width: '30px' }}></th>
                                 <th>Order ID</th>
                                 <th>Customer</th>
                                 <th>Items</th>
@@ -137,60 +139,138 @@ const Orders = () => {
                         </thead>
                         <tbody>
                             {filteredOrders.map((order) => (
-                                <tr key={order._id}>
-                                    <td>
-                                        <div className="order-id">#{order._id.slice(-8)}</div>
-                                    </td>
-                                    <td>
-                                        <div className="customer-info">
-                                            <div className="customer-name">{order.user?.name || 'N/A'}</div>
-                                            <div className="customer-email">{order.user?.email || 'N/A'}</div>
-                                        </div>
-                                    </td>
-                                    <td>{order.orderItems.length} item(s)</td>
-                                    <td className="order-total">${order.totalPrice.toFixed(2)}</td>
-                                    <td>
-                                        <select
-                                            value={order.status}
-                                            onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                                            className="status-select"
-                                            style={{
-                                                backgroundColor: getStatusColor(order.status),
-                                                color: 'white'
-                                            }}
-                                        >
-                                            <option value="pending">Pending</option>
-                                            <option value="processing">Processing</option>
-                                            <option value="shipped">Shipped</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="cancelled">Cancelled</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <span className={`payment-badge ${order.isPaid ? 'paid' : 'unpaid'}`}>
-                                            {order.isPaid ? '✓ Paid' : '✗ Unpaid'}
-                                        </span>
-                                    </td>
-                                    <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                                    <td>
-                                        <div className="action-buttons">
+                                <React.Fragment key={order._id}>
+                                    <tr>
+                                        <td>
                                             <button
-                                                onClick={() => handleViewDetails(order)}
-                                                className="btn-view"
-                                                title="View Details"
+                                                onClick={() => setExpandedOrderId(expandedOrderId === order._id ? null : order._id)}
+                                                className="expand-btn"
+                                                title="Expand details"
                                             >
-                                                👁️
+                                                {expandedOrderId === order._id ? '▼' : '▶'}
                                             </button>
-                                            <button
-                                                onClick={() => handleDelete(order._id)}
-                                                className="btn-delete"
-                                                title="Delete"
+                                        </td>
+                                        <td>
+                                            <div className="order-id">#{order._id.slice(-8)}</div>
+                                        </td>
+                                        <td>
+                                            <div className="customer-info">
+                                                <div className="customer-name">{order.user?.name || 'N/A'}</div>
+                                                <div className="customer-email">{order.user?.email || 'N/A'}</div>
+                                            </div>
+                                        </td>
+                                        <td>{order.orderItems.length} item(s)</td>
+                                        <td className="order-total">${order.totalPrice.toFixed(2)}</td>
+                                        <td>
+                                            <select
+                                                value={order.status}
+                                                onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                                                className="status-select"
+                                                style={{
+                                                    backgroundColor: getStatusColor(order.status),
+                                                    color: 'white'
+                                                }}
                                             >
-                                                🗑️
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                <option value="pending">Pending</option>
+                                                <option value="processing">Processing</option>
+                                                <option value="shipped">Shipped</option>
+                                                <option value="delivered">Delivered</option>
+                                                <option value="cancelled">Cancelled</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span className={`payment-badge ${order.isPaid ? 'paid' : 'unpaid'}`}>
+                                                {order.isPaid ? '✓ Paid' : '✗ Unpaid'}
+                                            </span>
+                                        </td>
+                                        <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                                        <td>
+                                            <div className="action-buttons">
+                                                <button
+                                                    onClick={() => handleViewDetails(order)}
+                                                    className="btn-view"
+                                                    title="View Details"
+                                                >
+                                                    👁️
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(order._id)}
+                                                    className="btn-delete"
+                                                    title="Delete"
+                                                >
+                                                    🗑️
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {expandedOrderId === order._id && (
+                                        <tr className="expanded-row">
+                                            <td colSpan="9">
+                                                <div className="expanded-content">
+                                                    <div className="expanded-section">
+                                                        <h4>Customer Details</h4>
+                                                        <div className="details-grid">
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">Name:</span>
+                                                                <span className="detail-value">{order.customerInfo?.name || order.user?.name || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">Email:</span>
+                                                                <span className="detail-value">{order.customerInfo?.email || order.user?.email || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">Phone:</span>
+                                                                <span className="detail-value">{order.customerInfo?.phone || order.user?.phone || 'N/A'}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="expanded-section">
+                                                        <h4>Shipping Address</h4>
+                                                        <div className="details-grid">
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">Street:</span>
+                                                                <span className="detail-value">{order.shippingAddress?.street || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">City:</span>
+                                                                <span className="detail-value">{order.shippingAddress?.city || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">State/Province:</span>
+                                                                <span className="detail-value">{order.shippingAddress?.state || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">ZIP Code:</span>
+                                                                <span className="detail-value">{order.shippingAddress?.zipCode || 'N/A'}</span>
+                                                            </div>
+                                                            <div className="detail-item">
+                                                                <span className="detail-label">Country:</span>
+                                                                <span className="detail-value">{order.shippingAddress?.country || 'N/A'}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="expanded-section">
+                                                        <h4>Order Items</h4>
+                                                        <div className="items-list">
+                                                            {order.orderItems.map((item, idx) => (
+                                                                <div key={idx} className="item-row">
+                                                                    <img src={item.image} alt={item.name} />
+                                                                    <div className="item-details">
+                                                                        <p><strong>{item.name}</strong></p>
+                                                                        <p>Size: {item.size || 'N/A'} | Color: {item.color || 'N/A'}</p>
+                                                                        <p>Quantity: {item.quantity} × ${item.price.toFixed(2)} = ${(item.quantity * item.price).toFixed(2)}</p>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
                             ))}
                         </tbody>
                     </table>

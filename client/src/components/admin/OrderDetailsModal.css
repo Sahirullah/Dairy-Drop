@@ -101,10 +101,21 @@
     color: #333;
 }
 
-.item-info p {
-    margin: 4px 0;
-    font-size: 14px;
+.item-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.item-details-grid p {
+    margin: 0;
+    font-size: 13px;
     color: #666;
+}
+
+.item-details-grid strong {
+    color: #333;
 }
 
 .item-price {
