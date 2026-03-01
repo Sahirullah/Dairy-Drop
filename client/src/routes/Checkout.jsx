@@ -36,9 +36,9 @@ const Checkout = () => {
         if (user) {
             setFormData(prev => ({
                 ...prev,
-                name: user.name || prev.name,
-                email: user.email || prev.email,
-                phone: user.phone || prev.phone,
+                name: user.name || prev.name || '',
+                email: user.email || prev.email || '',
+                phone: user.phone || prev.phone || '',
             }));
         }
     }, [user]);
@@ -101,6 +101,12 @@ const Checkout = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validate phone number
+        if (!formData.phone || formData.phone.trim() === '') {
+            showAlert('Please enter a phone number', 'error');
+            return;
+        }
 
         if (!user) {
             showAlert('Please login account', 'info');
@@ -256,6 +262,8 @@ const Checkout = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="+1 (555) 000-0000"
+                                    pattern="[0-9+\-\s\(\)]+"
+                                    title="Please enter a valid phone number"
                                 />
                             </div>
 

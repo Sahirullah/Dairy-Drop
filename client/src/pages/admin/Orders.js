@@ -73,6 +73,10 @@ const Orders = () => {
         return colors[status] || '#666';
     };
 
+    const getTotalQuantity = (orderItems) => {
+        return orderItems.reduce((total, item) => total + (item.quantity || 1), 0);
+    };
+
     if (loading) {
         return <div className="orders-loading">Loading orders...</div>;
     }
@@ -159,7 +163,7 @@ const Orders = () => {
                                                 <div className="customer-email">{order.user?.email || 'N/A'}</div>
                                             </div>
                                         </td>
-                                        <td>{order.orderItems.length} item(s)</td>
+                                        <td>{getTotalQuantity(order.orderItems)} item(s)</td>
                                         <td className="order-total">${order.totalPrice.toFixed(2)}</td>
                                         <td>
                                             <select

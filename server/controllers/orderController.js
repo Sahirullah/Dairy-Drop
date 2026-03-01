@@ -27,6 +27,7 @@ const createOrder = async (req, res) => {
             customerName: name,
             customerEmail: email,
             customerPhone: phone,
+            phoneIsEmpty: !phone || phone.trim() === '',
         });
 
         if (!orderItems || orderItems.length === 0) {
@@ -67,7 +68,7 @@ const createOrder = async (req, res) => {
             customerInfo: {
                 name: name || req.user.name || '',
                 email: email || req.user.email || '',
-                phone: phone || req.user.phone || '',
+                phone: (phone && phone.trim()) || req.user.phone || '',
             },
             orderItems: normalizedOrderItems,
             shippingAddress,
@@ -78,11 +79,11 @@ const createOrder = async (req, res) => {
             totalPrice,
         });
 
-        // Update user's phone if provided
-        if (phone) {
+        // Update user's phone if provided and not empty
+        if (phone && phone.trim()) {
             await User.findByIdAndUpdate(
                 req.user._id,
-                { phone: phone },
+                { phone: phone.trim() },
                 { new: true }
             );
         }
